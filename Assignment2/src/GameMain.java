@@ -1,7 +1,7 @@
 import java.util.Scanner;				// Scanner required for player input
 
 /**
- * The main class for the game Tic-Tac-Toe.
+ * The main class for the game Tic-Tac-Toe. Commit test
  * Controls the flow of the game, allowing each player to enter an option until the game ends.
  */
 
