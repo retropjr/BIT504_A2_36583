@@ -19,16 +19,16 @@ public class GameMain {
     */
    public GameMain() {
 	   // Create the grid
-	   
-	   // TODO: Create a new instance of the "Grid"class
+	   grid = new Grid();
 	   
 	   // Reset the game variables to their defaults
-	   
-	   // TODO: Assign the default values for currentPlayer (Player.X), gameOver (false), and winner (null)
+	   currentPlayer = Player.X;
+	   gameOver = false;
+	   winner = Player.EMPTY;
 
 	   // Begin playing the game
+	   play();
 	   
-	   // TODO: Call the "play()" method
    }
    
    /**
@@ -74,9 +74,7 @@ public class GameMain {
          if (turnPlayer == Player.X) {
             System.out.print("Player 'X', enter your move (row[1-3] column[1-3]): ");
          } else {
-            
-        	 // TODO: Inform Player 'O' to enter their move
-        	 
+        	 System.out.print("Player 'O', enter your move (row[1-3] column[1-3]): ");
          }
          
          // Obtains input from the player for both row and column
@@ -87,16 +85,17 @@ public class GameMain {
          row--;
          col--;
          
+         
          // Verify the values the player entered are valid (position is valid and empty)
-         if (row >= 0 && row < Grid.ROWS && col >= 0 && col < Grid.COLUMNS && grid.board[row][col].content == Player.EMPTY) {
-        	 grid.board[row][col].content = turnPlayer;
-        	 grid.currentRow = row;
-        	 grid.currentCol = col;
+         if (row >= 0 && row < grid.getROWS() && col >= 0 && col < grid.getCOLUMNS() && grid.getBoard(row, col) == Player.EMPTY) {
+        	 grid.setBoard(row, col, turnPlayer);
+        	 grid.setCurrentRow(row);
+        	 grid.setCurrentCol(col);
         	 validInput = true;
-         } else {
+         } //else {
         	 
         	 // TODO: Display an error message that the move was not valid.
-         }
+         //}
          
       } while (!validInput);   // Repeat until input is valid
    }
@@ -105,11 +104,11 @@ public class GameMain {
     * Checks if the game has ended
     */
    public void checkForWinner(Player turnPlayer) {
-      if (grid.hasWon(turnPlayer)) {
+      if (Grid.hasWon(turnPlayer)) {
     	  
     	  // TODO: Set gameOver and winner appropriately
 
-      } else if (grid.isDraw()) {
+      } else if (Grid.isDraw()) {
 
     	  // TODO: Set gameOver and winner appropriately
       }

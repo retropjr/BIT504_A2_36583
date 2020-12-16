@@ -9,9 +9,9 @@ public class Box {
    /**
     * Constructor
     */
-   public Box(int row, int col) {
+   public Box() {
 	   
-	   // TODO: Initialise the variables row, col, and content
+	   content = Player.EMPTY;
   
    }
  
@@ -20,15 +20,15 @@ public class Box {
     */
    public void clear() {
 	   
-      // TODO: Set the value of content to EMPTY (Remember this is an enum)
+      content = Player.EMPTY;
 	   
    }
  
    /**
     * Display the content of the box
-    */
-   public void display() {
+    */   public void display() {
 	   
+	   System.out.print(" X ");
 	   // TODO: Print the content of this box (" X " if it Player.X, " O " for Player.O and "   " for Player.Empty)
 	   // Hint: Can use an if-else or switch statement
 	   
