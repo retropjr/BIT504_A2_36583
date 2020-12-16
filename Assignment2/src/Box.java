@@ -25,12 +25,28 @@ public class Box {
    }
  
    /**
-    * Display the content of the box
+    * Display the content of the box " X " if it Player.X, " O " for Player.O and "   " for Player.Empty)
     */   public void display() {
 	   
-	   System.out.print(" X ");
-	   // TODO: Print the content of this box (" X " if it Player.X, " O " for Player.O and "   " for Player.Empty)
-	   // Hint: Can use an if-else or switch statement
-	   
+    	switch(content) {
+		case EMPTY: {
+			System.out.print("   ");
+			break;
+		}
+		case X: {
+			System.out.print(" X ");
+			break;
+		}
+		case O: {
+			System.out.print(" O ");
+			break;
+		}
+		default: {
+			System.out.println("Invalid box content!");
+			break;
+		}
+	}
+    	
+    		   
    }
 }

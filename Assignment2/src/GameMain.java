@@ -8,7 +8,6 @@ import java.util.Scanner;				// Scanner required for player input
 public class GameMain {
 	private static Scanner scanner = new Scanner(System.in);  // Scanner for input
 	
-	private Grid grid;					// The game board
 	private boolean gameOver;			// Whether game is playing or over
 	private Player winner;				// Winner of the game
 	private Player currentPlayer;		// Current player (enum)
@@ -19,7 +18,7 @@ public class GameMain {
     */
    public GameMain() {
 	   // Create the grid
-	   grid = new Grid();
+	   Grid.getInstance();
 	   
 	   // Reset the game variables to their defaults
 	   currentPlayer = Player.X;
@@ -37,7 +36,7 @@ public class GameMain {
    public void play() {
 	   do {
 	         playerMove(currentPlayer);			// Have the player perform their move
-	         grid.display();					// Display the current game board
+	         Grid.display();					// Display the current game board
 	         checkForWinner(currentPlayer);		// Checks if the game has been won
 	         
 	         // Display results if game is over
@@ -87,10 +86,10 @@ public class GameMain {
          
          
          // Verify the values the player entered are valid (position is valid and empty)
-         if (row >= 0 && row < grid.getROWS() && col >= 0 && col < grid.getCOLUMNS() && grid.getBoard(row, col) == Player.EMPTY) {
-        	 grid.setBoard(row, col, turnPlayer);
-        	 grid.setCurrentRow(row);
-        	 grid.setCurrentCol(col);
+         if (row >= 0 && row < Grid.getROWS() && col >= 0 && col < Grid.getCOLUMNS() && Grid.getBoard(row, col) == Player.EMPTY) {
+        	 Grid.setBoard(row, col, turnPlayer);
+        	 Grid.setCurrentRow(row);
+        	 Grid.setCurrentCol(col);
         	 validInput = true;
          } //else {
         	 
