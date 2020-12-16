@@ -26,8 +26,7 @@ public class GameMain {
 	   winner = Player.EMPTY;
 
 	   // Begin playing the game
-	   play();
-	   
+	   play();   
    }
    
    /**
@@ -43,9 +42,13 @@ public class GameMain {
 	         if(gameOver) {
 	        	 if(winner == Player.X) {
 		        	 System.out.println("Player X wins!");
+		         } else if(winner == Player.O ) {
+		        	 System.out.println("Player O wins!");
+		         } else if(winner == Player.EMPTY) {
+		        	 System.out.println("It's a draw!");
 		         }
 	        	 
-	        	 // TODO: Display result if player O wins
+	        	
 	        	 
 	        	 // TODO: Display result if it was a draw
 	         }
@@ -104,12 +107,11 @@ public class GameMain {
     */
    public void checkForWinner(Player turnPlayer) {
       if (Grid.hasWon(turnPlayer)) {
-    	  
-    	  // TODO: Set gameOver and winner appropriately
-
+    	  winner = turnPlayer;
+    	  gameOver = true;
       } else if (Grid.isDraw()) {
-
-    	  // TODO: Set gameOver and winner appropriately
+    	  winner = Player.EMPTY;
+    	  gameOver = true;
       }
    }
  

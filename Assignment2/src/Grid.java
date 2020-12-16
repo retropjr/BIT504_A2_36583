@@ -6,7 +6,7 @@
 public class Grid {
 	//
 	private static Grid instance = null;
-	//Define the amount of rows and columns
+	//Define the number of rows and columns
 	private final static int ROWS = 3;			// Rows
 	private final static int COLUMNS = 3;		// Columns
  
@@ -15,12 +15,23 @@ public class Grid {
 	private static int currentCol;								// Column that was played last
  
 	/**
+	 * 
+	 * If there is no other instance of a Grid (i.e. Only one game board) a 
+	 * Grid instance is created and instance will no longer be null.
+	 */ 
+	public static Grid getInstance() {
+		if (instance == null) {
+			instance = new Grid();
+		}
+		return instance;
+	}
+	
+	
+	/**
 	 * Constructor
 	 */
    public Grid() {
-      
-      // TODO: Initialise the board array using ROWS and COLUMNS
-     
+      //Initialise the board array using ROWS and COLUMNS
       for (int row = 0; row < ROWS; ++row) {
          for (int col = 0; col < COLUMNS; ++col) {
             board[row][col] = new Box();
@@ -28,17 +39,7 @@ public class Grid {
       }
    }
    
-   /**
-    * 
-    * If there is no other instance of a Grid (i.e. Only one game board) a 
-    * Grid instance is created.  Instance will no longer be null.
-   */ 
-   public static Grid getInstance() {
-		if (instance == null) {
-			instance = new Grid();
-		}
-		return instance;
-	}
+   
    
    
    //Getter methods
@@ -75,10 +76,16 @@ public class Grid {
    public static boolean isDraw() {
 	   
 	   // TODO: Check whether the game has ended in a draw. 
-	   // Hint: Use a nested loop (see the constructor for an example). Check whether any of the Boxes in the board grid are Player.Empty. If they are, it is not a draw.
-	   // Hint: Return false if it is not a draw, return true if there are not empty positions left
-	   return true;  // or false TODO code
-
+	   
+	   // Using a nested loop. Check whether any of the Boxes in the board grid are Player.Empty. If they are, it is not a draw.
+	   for (int row = 0; row < ROWS; ++row) {
+	         for (int col = 0; col < COLUMNS; ++col) {
+	            if(board[row][col].content == Player.EMPTY) {
+	            	return false; //There are still empty positions on the grid, a win might still be possible.
+	            }
+	         }    
+	      }
+	   return true;  //All grid positions a full, a win is not possible, it is a draw.
    }
  
    /**
@@ -90,19 +97,21 @@ public class Grid {
 		   return true;
 	   }
 	   // Column check
-
-	   // TODO: Check if the currentCol is filled.
-	   // Hint: Use the row code above as a starting point, remember that it goes board[row][column].
-	   
+	   if(board[0][currentCol].content == player && board[1][currentCol].content == player && board[2][currentCol].content == player) {
+		   return true;
+	   }
 	   // Diagonal check (check both directions
 	   if(board[0][0].content == player && board[1][1].content == player && board[2][2].content == player) {
 		   return true;
 	   }
 
 	   // TODO: Check the diagonal in the other direction
-	   
+	   if(board[0][2].content == player && board[1][1].content == player && board[2][0].content == player) {
+		   return true;
+	   }
 	   // No one has won yet
 	   return false;
+	   
    }
  
    /**
