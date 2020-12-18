@@ -8,7 +8,7 @@ import java.util.Scanner;				// Scanner required for player input
 public class GameMain {
 	private static Scanner scanner = new Scanner(System.in);  // Scanner for input
 	
-	private boolean gameOver;			// Whether game is playing or over
+	private boolean gameOver = false;	// Whether game is playing or over
 	private Player winner;				// Winner of the game
 	private Player currentPlayer;		// Current player (enum)
  
@@ -21,9 +21,10 @@ public class GameMain {
 	   Grid.getInstance();
 	   
 	   // Reset the game variables to their defaults
+	   
 	   currentPlayer = Player.X;
-	   gameOver = false;
 	   winner = Player.EMPTY;
+	   Grid.clearBoard();
 
 	   // Begin playing the game
 	   play();   
@@ -47,10 +48,6 @@ public class GameMain {
 		         } else if(winner == Player.EMPTY) {
 		        	 System.out.println("It's a draw!");
 		         }
-	        	 
-	        	
-	        	 
-	        	 // TODO: Display result if it was a draw
 	         }
 	         
 	         // Switch turn to the next player
@@ -120,10 +117,20 @@ public class GameMain {
     */
    public static void main(String[] args) {
 	   
-	   // TODO: Add a loop to restart the game once it has finished
+	   boolean exitGame = false;
 	   
-	   // TODO: Then update the loop to ask the player if they want to play again, exit if they do not
-	   
-	   new GameMain();
+	   while (!exitGame) {
+		   new GameMain();
+	   //ask the player if they want to play again, exit if they do not
+		   System.out.print("Do you want to play another game? (y/n): ");
+		   char response = scanner.next().charAt(0);
+		   if (response == 'y' || response == 'Y') {
+			   exitGame = false;
+			} else {
+				exitGame = true;
+			}
+		   
+	   } 
+	   scanner.close();
 	}
 }

@@ -60,6 +60,9 @@ public class Grid {
 		board[row][col].content = player;
 	}
    
+   
+   
+   
    public static void setCurrentRow( int row) {
 	   currentRow = row;
    }
@@ -112,6 +115,18 @@ public class Grid {
 	   // No one has won yet
 	   return false;
 	   
+   }
+   
+   
+   /**
+    * Clears the board before a new game.
+    */
+   public static void clearBoard() {
+	   for (int row = 0; row < ROWS; ++row) {
+	         for (int col = 0; col < COLUMNS; ++col) {
+	            board[row][col].content = Player.EMPTY;
+	         }
+	   }
    }
  
    /**
