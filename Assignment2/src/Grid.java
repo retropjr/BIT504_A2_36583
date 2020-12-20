@@ -4,7 +4,7 @@
  * A singleton pattern is used to create the Grid class and global access is provided.
  */
 public class Grid {
-	//
+	//Initialise the instance as null.
 	private static Grid instance = null;
 	//Define the number of rows and columns
 	private final static int ROWS = 3;			// Rows
@@ -14,6 +14,18 @@ public class Grid {
 	private static int currentRow;								// Row that was played last
 	private static int currentCol;								// Column that was played last
  
+	/**
+	 * Private constructor, so that it cannot be instantiated outside this class.
+	 */
+   private Grid() {
+      //Initialise the board array using ROWS and COLUMNS
+      for (int row = 0; row < ROWS; ++row) {
+         for (int col = 0; col < COLUMNS; ++col) {
+            board[row][col] = new Box();
+         } 
+      }
+    }
+	
 	/**
 	 * 
 	 * If there is no other instance of a Grid (i.e. Only one game board) a 
@@ -26,21 +38,6 @@ public class Grid {
 		return instance;
 	}
 	
-	
-	/**
-	 * Constructor
-	 */
-   public Grid() {
-      //Initialise the board array using ROWS and COLUMNS
-      for (int row = 0; row < ROWS; ++row) {
-         for (int col = 0; col < COLUMNS; ++col) {
-            board[row][col] = new Box();
-         }    
-      }
-   }
-   
-   
-   
    
    //Getter methods
    public static int getROWS() {
