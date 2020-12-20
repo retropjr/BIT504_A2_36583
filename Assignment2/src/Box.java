@@ -4,7 +4,7 @@
 public class Box {
 
    Player content;			// The move this box holds (Empty, X, or O)
-   int row, col; 			// Row and column of this box (Not currently used but possibly useful in future updates)
+   //int row, col; 			// Row and column of this box (Not currently used but possibly useful in future updates)
  
    /**
     * Constructor

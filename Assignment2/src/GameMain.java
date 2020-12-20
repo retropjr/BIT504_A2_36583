@@ -28,6 +28,7 @@ public class GameMain {
 	   Grid.clearBoard();
 
 	   // Begin playing the game
+	   Grid.display();
 	   play();   
    }
    
@@ -36,7 +37,6 @@ public class GameMain {
     */
    public void play() {
 	   do {
-		   	 Grid.display();
 	         playerMove(currentPlayer);			// Have the player perform their move
 	         Grid.display();					// Display the current game board
 	         checkForWinner(currentPlayer);		// Checks if the game has been won
@@ -80,7 +80,7 @@ public class GameMain {
          
          // Obtains input from the player for both row and column
          int row = 0, col = 0;
-         while (row == 0 && col == 0) {
+         while (row == 0 || col == 0) {
          try {
 				//Read the next integer on the console.
 	            row = scanner.nextInt();
@@ -88,11 +88,12 @@ public class GameMain {
 			//If an integer is not entered, catch the exception, and inform the user.
 			catch(InputMismatchException e) {
 				//Checks that only an integer is entered.
-				System.err.println("Please enter an integer number.");
+				System.err.println("Please enter integer numbers (row space column).");
 				//The following line is required because otherwise the newline character produced when the user hits enter is read and the 
 				//program enters an infinite loop... 
 				scanner.nextLine();
-				row = 0; col = 0;
+				row = 0; 
+				break;
 			}
         
          try {
@@ -102,11 +103,12 @@ public class GameMain {
 			//If an integer is not entered, catch the exception, and inform the user.
 			catch(InputMismatchException e) {
 				//Checks that only an integer is entered.
-				System.err.println("Please enter an integer number.");
+				System.err.println("Please enter integer numbers (row space column).");
 				//The following line is required because otherwise the newline character produced when the user hits enter is read and the 
 				//program enters an infinite loop... 
 				scanner.nextLine();
-				row = 0; col = 0;
+				col = 0;
+				break;
 			}
          }
          
